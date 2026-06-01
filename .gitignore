@@ -1,0 +1,16 @@
+/.env
+/.env.local
+/.env.*.local
+/var/
+/vendor/
+/public/bundles/
+/public/assets/
+/assets/vendor/
+/node_modules/
+/.phpunit.cache/
+/.phpunit.result.cache
+/coverage/
+/composer.phar
+/.idea/
+/.vscode/
+.DS_Store
