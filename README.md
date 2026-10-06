@@ -1,132 +1,388 @@
-# RestauManager
+<div align="center">
 
-Application web Symfony de gestion de restaurant, construite autour de trois espaces utilisateurs: administrateur, serveur et client. Le projet met en avant une architecture MVC avec Symfony, Doctrine ORM, Twig, un systeme d'authentification par roles et une gestion complete des reservations.
+# 🍽️ RestauManager
 
-## Apercu
+### Restaurant Management System built with Symfony
 
-RestauManager simule le fonctionnement d'un restaurant:
+A full-stack web application designed to manage restaurant operations through dedicated **Admin**, **Waiter**, and **Customer** interfaces.
 
-- les clients consultent la carte, creent un compte et reservent une table;
-- les serveurs suivent les reservations du jour, confirment ou annulent les demandes et gerent l'etat des tables;
-- les administrateurs pilotent les tables, les plats, les menus, les utilisateurs et les reservations depuis un back-office.
+<br>
 
-Ce projet a ete pense comme une application full-stack presentable dans un portfolio: il montre la gestion des entites, des formulaires, des routes securisees, des fixtures, des migrations Doctrine et des vues Twig responsives basees sur Bootstrap.
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Symfony](https://img.shields.io/badge/Symfony-7.4-000000?style=for-the-badge&logo=symfony&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Twig](https://img.shields.io/badge/Twig-Templates-BACF29?style=for-the-badge&logo=twig&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-## Fonctionnalites
+</div>
 
-- Authentification avec redirection selon le profil utilisateur.
-- Gestion des roles `ROLE_ADMIN`, `ROLE_SERVEUR` et `ROLE_CLIENT`.
-- Tableau de bord administrateur avec statistiques de reservations, tables et utilisateurs.
-- CRUD administrateur pour les tables, plats, menus, utilisateurs et reservations.
-- Espace serveur pour les reservations du jour, le statut des tables et la carte.
-- Espace client pour la consultation de la carte, les reservations et le profil.
-- API JSON pour rechercher les tables et creneaux disponibles.
-- Page publique de presentation du restaurant et carte accessible sans connexion.
-- Fixtures pour generer des comptes de demonstration, plats, menus, tables et reservations.
+---
 
-## Stack technique
+## 📌 About the Project
 
-| Couche | Technologie |
-| --- | --- |
-| Backend | PHP 8.2+, Symfony 7.4 |
-| Templates | Twig, Bootstrap 5 |
-| Base de donnees | PostgreSQL via Docker Compose |
-| ORM | Doctrine ORM, Doctrine Migrations |
-| Securite | Symfony Security Bundle |
-| Donnees de demo | Doctrine Fixtures, Faker |
-| Tests | PHPUnit |
+**RestauManager** is a restaurant management web application built with **Symfony 7** following the **MVC architecture**.
 
-## Structure principale
+The platform provides three dedicated user environments:
+
+- 👨‍💼 **Administrator**
+- 🧑‍🍳 **Waiter**
+- 👤 **Customer**
+
+Customers can browse the menu and reserve tables, waiters can manage daily reservations and restaurant tables, while administrators have full control over the restaurant through a complete back-office.
+
+The project demonstrates authentication, role-based authorization, CRUD operations, database relationships, REST-style APIs, Doctrine ORM, Twig templates and responsive interfaces.
+
+---
+
+## ✨ Features
+
+### 👤 Customer
+
+- Create an account and log in
+- Browse the restaurant menu
+- Reserve a table
+- View personal reservations
+- Manage profile information
+
+### 🧑‍🍳 Waiter
+
+- View today's reservations
+- Confirm or cancel reservations
+- Monitor restaurant tables
+- Update table availability
+- Access the restaurant menu
+
+### 👨‍💼 Administrator
+
+- Admin dashboard
+- Reservation statistics
+- Manage restaurant tables
+- Manage dishes
+- Manage menus
+- Manage users
+- Manage reservations
+- Monitor restaurant activity
+
+---
+
+## ⚡ Additional Features
+
+- 🔐 Role-based authentication
+- 🛡️ Protected routes with Symfony Security
+- 📊 Administration dashboard
+- 🗄️ Doctrine ORM entities and repositories
+- 🔄 Doctrine migrations
+- 🧪 Fixtures and Faker demo data
+- 📱 Responsive Bootstrap interface
+- 🌐 Public restaurant pages
+- 🔎 Table availability API
+- ❤️ Application health-check endpoint
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|---|---|
+| Backend | PHP 8.2+ |
+| Framework | Symfony 7.4 |
+| Database | PostgreSQL |
+| ORM | Doctrine ORM |
+| Templates | Twig |
+| Frontend | Bootstrap 5 |
+| Authentication | Symfony Security |
+| Migrations | Doctrine Migrations |
+| Demo Data | Doctrine Fixtures + Faker |
+| Testing | PHPUnit |
+| Environment | Docker Compose |
+
+---
+
+## 🏗️ Project Architecture
 
 ```text
-src/
-  Controller/        Controleurs publics, client, serveur, admin et API
-  Entity/            Entites Doctrine: User, Reservation, RestaurantTable, Plat, Menu
-  Form/              Formulaires Symfony
-  Repository/        Requetes metier Doctrine
-  DataFixtures/      Jeux de donnees de demonstration
-templates/
-  admin/             Back-office administrateur
-  serveur/           Interface serveur
-  client/            Espace client
-  public/            Pages publiques
-config/              Configuration Symfony, Doctrine et securite
-migrations/          Historique des migrations Doctrine
+RestauManager/
+│
+├── src/
+│   ├── Controller/
+│   │   ├── Admin/
+│   │   ├── Client/
+│   │   ├── Serveur/
+│   │   └── Api/
+│   │
+│   ├── Entity/
+│   │   ├── User.php
+│   │   ├── Reservation.php
+│   │   ├── RestaurantTable.php
+│   │   ├── Plat.php
+│   │   └── Menu.php
+│   │
+│   ├── Form/
+│   ├── Repository/
+│   └── DataFixtures/
+│
+├── templates/
+│   ├── admin/
+│   ├── client/
+│   ├── serveur/
+│   └── public/
+│
+├── config/
+├── migrations/
+├── public/
+├── tests/
+│
+├── docker-compose.yml
+├── composer.json
+└── README.md
 ```
 
-## Installation locale
+---
 
-### Prerequis
+## 🔐 User Roles
 
-- PHP 8.2 ou plus
-- Composer
-- Docker et Docker Compose, pour la base PostgreSQL
-- Symfony CLI, recommande pour lancer le serveur local
+```text
+ROLE_ADMIN
+ROLE_SERVEUR
+ROLE_CLIENT
+```
 
-### Demarrage
+Each role has access to its own dashboard and authorized features.
+
+---
+
+## 🚀 Installation
+
+### Requirements
+
+Make sure you have:
+
+```text
+PHP 8.2+
+Composer
+Docker
+Docker Compose
+Symfony CLI
+```
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/RestauManager.git
+cd RestauManager
+```
+
+### Install dependencies
 
 ```bash
 composer install
-cp .env.example .env
-docker compose up -d
-php bin/console doctrine:database:create --if-not-exists
-php bin/console doctrine:migrations:migrate
-php bin/console doctrine:fixtures:load
-symfony server:start
 ```
 
-L'application sera disponible sur `http://127.0.0.1:8000`.
+### Environment configuration
 
-## Comptes de demonstration
+```bash
+cp .env.example .env
+```
 
-Si les fixtures sont chargees, ces comptes peuvent etre utilises:
+### Start PostgreSQL
 
-| Role | Email | Mot de passe | Acces |
-| --- | --- | --- | --- |
-| Admin | `admin@example.com` | `admin123` | `/admin/dashboard` |
-| Serveur | `serveur@example.com` | `serveur123` | `/serveur/` |
-| Client | `client@example.com` | `client123` | `/client/dashboard` |
+```bash
+docker compose up -d
+```
 
-Les fixtures principales creent aussi un compte `admin@restaurant.com` avec le mot de passe `admin123`.
+### Create the database
 
-## Routes utiles
+```bash
+php bin/console doctrine:database:create --if-not-exists
+```
 
-| Page | URL |
-| --- | --- |
-| Accueil | `/` |
-| Connexion | `/connexion` |
-| Inscription | `/inscription` |
-| Carte publique | `/carte` |
-| Reservation publique | `/reserver` |
-| Dashboard admin | `/admin/dashboard` |
-| Gestion des tables | `/admin/tables` |
-| Gestion des plats | `/admin/plats` |
-| Gestion des menus | `/admin/menus` |
-| Gestion des utilisateurs | `/admin/utilisateurs` |
-| Gestion des reservations | `/admin/reservations` |
-| Dashboard serveur | `/serveur/` |
-| Reservations serveur | `/serveur/reservations` |
-| Espace client | `/client/dashboard` |
-| API tables disponibles | `/api/tables-disponibles?date=2026-06-01&heure=19:00&nbPersonnes=2` |
-| Health check | `/status/health` |
-
-## Commandes utiles
+### Run migrations
 
 ```bash
 php bin/console doctrine:migrations:migrate
+```
+
+### Load demo data
+
+```bash
 php bin/console doctrine:fixtures:load
+```
+
+### Start the Symfony server
+
+```bash
+symfony server:start
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## 👥 Demo Accounts
+
+| Role | Email | Password |
+|---|---|---|
+| 👨‍💼 Admin | `admin@example.com` | `admin123` |
+| 🧑‍🍳 Waiter | `serveur@example.com` | `serveur123` |
+| 👤 Customer | `client@example.com` | `client123` |
+
+Additional administrator account:
+
+```text
+Email: admin@restaurant.com
+Password: admin123
+```
+
+---
+
+## 🌐 Main Routes
+
+| Feature | Route |
+|---|---|
+| Home | `/` |
+| Login | `/connexion` |
+| Register | `/inscription` |
+| Public Menu | `/carte` |
+| Reservation | `/reserver` |
+| Admin Dashboard | `/admin/dashboard` |
+| Tables Management | `/admin/tables` |
+| Dishes Management | `/admin/plats` |
+| Menus Management | `/admin/menus` |
+| Users Management | `/admin/utilisateurs` |
+| Reservations Management | `/admin/reservations` |
+| Waiter Dashboard | `/serveur/` |
+| Waiter Reservations | `/serveur/reservations` |
+| Customer Dashboard | `/client/dashboard` |
+| Health Check | `/status/health` |
+
+---
+
+## 🔌 API
+
+### Available Tables
+
+```http
+GET /api/tables-disponibles
+```
+
+Example:
+
+```text
+/api/tables-disponibles?date=2026-06-01&heure=19:00&nbPersonnes=2
+```
+
+The API searches for tables according to:
+
+```text
+Date
+Time
+Number of guests
+Availability
+```
+
+---
+
+## 🧪 Useful Commands
+
+```bash
+# Run migrations
+php bin/console doctrine:migrations:migrate
+
+# Load fixtures
+php bin/console doctrine:fixtures:load
+
+# Display application routes
 php bin/console debug:router
+
+# Run tests
 php bin/phpunit
 ```
 
-## Idees d'amelioration
+---
 
-- Ajouter des captures d'ecran dans un dossier `docs/screenshots`.
-- Completer les tests fonctionnels des parcours admin, serveur et client.
-- Ajouter l'envoi d'e-mails de confirmation pour les reservations.
-- Ajouter une recherche avancee par date, capacite et statut.
-- Preparer un deploiement avec variables d'environnement de production.
+## 📸 Screenshots
 
-## Presentation portfolio
+You can add application screenshots inside:
 
-**RestauManager** est une application Symfony 7 de gestion de restaurant avec authentification multi-roles. Elle permet aux clients de reserver une table, aux serveurs de suivre les reservations et aux administrateurs de gerer la carte, les tables, les utilisateurs et les reservations. Le projet illustre une application web full-stack structuree avec Doctrine, Twig, formulaires Symfony, migrations, fixtures et routes securisees.
+```text
+docs/screenshots/
+```
+
+Example:
+
+```markdown
+![Admin Dashboard](docs/screenshots/admin-dashboard.png)
+```
+
+Recommended screenshots:
+
+```text
+Admin Dashboard
+Restaurant Menu
+Reservation Page
+Waiter Dashboard
+Customer Dashboard
+Tables Management
+```
+
+---
+
+## 🚧 Future Improvements
+
+- 📧 Email reservation confirmations
+- 🔔 Reservation notifications
+- 🔍 Advanced reservation filters
+- 📊 Advanced restaurant analytics
+- 📅 Interactive booking calendar
+- 💳 Online payment integration
+- 🌙 Dark mode
+- 🌍 Multi-language support
+- 🧪 More functional tests
+- ☁️ Production deployment
+
+---
+
+## 💡 What This Project Demonstrates
+
+This project highlights practical knowledge of:
+
+```text
+Symfony MVC Architecture
+PHP Object-Oriented Programming
+Doctrine ORM
+Database Relationships
+CRUD Development
+Authentication & Authorization
+Role-Based Access Control
+REST-style APIs
+Twig Templates
+Responsive UI Development
+Database Migrations
+Fixtures & Testing
+Docker Development Environment
+```
+
+---
+
+## 🎯 Project Purpose
+
+RestauManager was created as a full-stack project to demonstrate the development of a structured restaurant management platform using the Symfony ecosystem.
+
+It combines backend development, database management, authentication, authorization and responsive frontend interfaces in one complete application.
+
+---
+
+<div align="center">
+
+### ⭐ RestauManager
+
+**Manage reservations. Organize tables. Simplify restaurant operations.**
+
+Made with ❤️ using **Symfony**
+
+</div>
